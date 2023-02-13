@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<% @picutres.each do |picture| %>
+  <div style="border-bottom: 1px solid #999; padding: 1em;" width='100%'>
+    <p>
+      <% if picture.user.avatar.url %>
+        <img src='<%= picture.user.avatar %>' width='50px' class='icon-img'>
+      <% end %>
+      <%= link_to picture.user.name, user_path(picture.user) if picture.user %>
+    </p>
+    <%= picture.title %><br>
+    <img src=<%= picture.image %>><br>
+    <%= link_to t('appname.page.picture.show'), picture %>
+    <%= link_to t('appname.page.picture.edit'), edit_picture_path(picture) if picture.user_id == session[:user_id] %>
+    <%= link_to t('appname.page.picture.destroy'), picture, method: :delete, data: { confirm: t("appname.are_you_sure") }  if picture.user_id == session[:user_id] %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="center" width="100%">
+  <div style="display: flex; width: calc(100vw-232px); justify-content: center">
+  
+    <% if @user.avatar.url %>
+      <img src='<%= @user.avatar %>' class='icon-img'>
+    <% end %>
+  
+    <div class='center'>
+      <%= @user.name %>
+      <% if session[:user_id] == @user.id %>
+        <br>
+        <%= link_to t("appname.page.user.edit"), edit_user_path %>|
+        <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= link_to t("appname.page.user.favorite"), "/favorite/" + @user.id.to_s %>
+</div>

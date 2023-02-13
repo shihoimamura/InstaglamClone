@@ -1,0 +1,20 @@
+<div style="display: flex; padding: 10vh 17vw;">
+  <div style="background-image: url(/assets/ItTndlZM2n2.png); width: 481px; height: 582px;">
+    <div style="margin-left: 155px; margin-top: 28px;">
+    <%= image_tag 'screenshot1.png', id: "img" %>
+    </div>
+  </div>
+  <div class='center'>
+    <%= form_with(scope: :session, url: sessions_path, local: true, class: "border") do |f| %>
+      <div aria-disabled="false" role="button" tabindex="0" style="cursor: pointer; margin: 50px 0;"><i data-visualcompletion="css-img" aria-label="Instagram" class="" role="img" style="background-image: url(&quot;https://static.cdninstagram.com/rsrc.php/v3/y-/r/yXM3FgMdVNX.png&quot;); background-position: 0px -52px; background-size: auto; width: 175px; height: 51px; background-repeat: no-repeat; display: inline-block;"></i></div>
+      <%= f.email_field :email, placeholder: t("appname.page.email"), class: "input" %><br>
+      <%= f.password_field :password, placeholder: t("appname.page.pw"), class: "input" %><br>
+      <%= f.submit t("appname.login"), class: "login-btn" %>
+    <% end %>
+    
+    <div style="font-size: 14px" class="border">
+      <%= t("message.dont_have_account") %>
+      <%= link_to t("appname.sign_up"), new_user_path %>
+    </div>
+  </div>
+</div>

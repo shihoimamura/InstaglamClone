@@ -1,0 +1,55 @@
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <table style="margin: 0 auto; padding-top: 50px;">
+    <tr>
+      <td>
+        <% if @user.avatar.url %>
+          <img src="<%= @user.avatar %>" class="icon-img">
+        <% else %>
+          <%= f.label t("appname.page.image") %>
+        <% end %>
+      </td>
+      <td>
+        <%= f.file_field :avatar %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= t("appname.page.email") %>
+      </td>
+      <td>
+        <%= @user.email %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label t("appname.page.name") %>
+      </td>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label t("appname.page.pw") %>
+      </td>
+      <td>
+        <%= f.password_field :password %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label t("appname.page.pwc") %>
+      </td>
+      <td>
+        <%= f.password_field :password_confirmation %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= f.submit t("appname.page.edit") %>
+      </td>
+    </tr>
+  </table>
+<% end %>

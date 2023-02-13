@@ -1,0 +1,32 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<center>
+  <div class='center' style='margin-top: 1vh;'>
+    <%= form_with(model: @user, local: true, class: "border") do |f| %>
+      <div aria-disabled="false" role="button" tabindex="0" style="cursor: pointer; margin: 50px 0;"><i data-visualcompletion="css-img" aria-label="Instagram" class="" role="img" style="background-image: url(&quot;https://static.cdninstagram.com/rsrc.php/v3/y-/r/yXM3FgMdVNX.png&quot;); background-position: 0px -52px; background-size: auto; width: 175px; height: 51px; background-repeat: no-repeat; display: inline-block;"></i></div>
+      <%= f.email_field :email, placeholder: t("appname.page.email"), class: "input" %>
+      <%= f.text_field :name, placeholder: t("appname.page.name"), class: "input" %>
+      <%= f.password_field :password, placeholder: t("appname.page.pw"), class: "input" %>
+      <%= f.password_field :password_confirmation, placeholder: t("appname.page.pwc"), class: "input" %>
+      <div class="field" style="margin: 3vh 0;">
+        <%= f.label t("appname.page.image") %>
+        <%= f.file_field :avatar %>
+      </div>
+      <%= f.submit t("appname.sign_up"),class: "login-btn" %>
+    <% end %>
+
+    <div style="font-size: 14px" class="border">
+      <%= t("message.have_account") %>
+      <%= link_to t("appname.login"), new_session_path %>
+    </div>
+  </div>
+</center>

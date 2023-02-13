@@ -1,0 +1,6 @@
+<h1><%= t("appname.page.picture.edit") %></h1>
+
+<%= render 'form', picture: @picture %>
+
+<%= link_to t("appname.page.picture.show"), @picture %> |
+<%= link_to t("appname.back"), pictures_path %>

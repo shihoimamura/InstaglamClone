@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t("appname.page.picture.user") %>:</strong><br>
+  <% if @picture.user.avatar.url %>
+    <img src='<%= @picture.user.avatar %>' width='50px' class='icon-img'><br>
+  <% end %>
+  <%= link_to @picture.user.name, user_path(@picture.user) if @picture.user %>
+</p>
+
+<p>
+  <strong><%= t("appname.page.picture.title") %>:</strong>
+  <%= @picture.title %>
+</p>
+
+<p>
+  <strong><%= t("appname.page.picture.image") %>:</strong>
+  <%= image_tag @picture.image.url if @picture.image && @picture.image.url %>
+</p>
+
+<p>
+  <strong><%= t("appname.page.picture.content") %>:</strong>
+  <%= @picture.content %>
+</p>
+
+<p>
+  <%= form_with(url: favorite_path) do |form| %>
+    <%= form.hidden_field :id, value: @picture.id %>
+    <%= form.submit("❤︎") if @picture.favorite_user_ids.include?(session[:user_id]) %>
+    <%= form.submit("♡") unless @picture.favorite_user_ids.include?(session[:user_id]) %>
+    <%= @picture.favorite_user_ids.length %>
+  <% end %>
+</p>
+
+<% if @picture.user_id == session[:user_id] %>
+  <%= link_to t("appname.page.picture.edit"), edit_picture_path(@picture) %> |
+<% end %>
+<%= link_to t('appname.back'), pictures_path %>
